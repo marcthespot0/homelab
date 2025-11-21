@@ -2,12 +2,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: external-dns-unifi
+  name: &app unifi-dns
 spec:
   interval: 1h
   chartRef:
     kind: OCIRepository
     name: unifi-dns
+    namespace: flux-system
   install:
     disableSchemaValidation: true
     remediation:
