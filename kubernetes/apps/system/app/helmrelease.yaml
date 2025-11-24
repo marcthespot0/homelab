@@ -1,0 +1,15 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: longhorn
+  namespace: system
+spec:
+  interval: 30m
+  chartRef:
+    kind: OCIRepository
+    name: longhorn
+  values:
+    defaultSettings:
+      createDefaultDiskLabeledNodes: true
+      defaultReplicaCount: "3"
