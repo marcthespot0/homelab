@@ -17,32 +17,9 @@ spec:
     remediation:
       retries: 3
   values:
-    # https://github.com/longhorn/longhorn/blob/v1.9.1/chart/values.yaml
-    longhornDriver:
-      nodeSelector:
-        longhorn-driver: "driver"
-    longhornUI:
-      nodeSelector:
-        longhorn-ui: "ui"
-    monitoring:
-      enabled: true
-      createPrometheusRules: true
     persistence:
-      defaultDataLocality: best-effort
-    defaultSettings:
-      createDefaultDiskLabeledNodes: true
-      defaultDataLocality: best-effort
-      defaultLonghornStaticStorageClass: longhorn-fast
-      defaultReplicaCount: 3
-      guaranteedEngineManagerCPU: 20
-      guaranteedReplicaManagerCPU: 20
-      nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
-      orphanAutoDeletion: true
-      replicaAutoBalance: true
-      storageMinimalAvailablePercentage: 1
-      storageReservedPercentageForDefaultDisk: 10
-    ingress:
-      enabled: false
-    metrics:
-      serviceMonitor:
-        enabled: true
+      defaultClass: true
+      defaultClassReplicaCount: 3
+    preUpgradeChecker:
+      jobEnabled: false
+      upgradeVersionCheck: false  # https://github.com/longhorn/longhorn/blob/v1.9.1/chart/values.yaml
