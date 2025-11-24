@@ -20,36 +20,36 @@ spec:
   values:
     persistence:
       defaultClass: true
-    defaultSettings:
-      defaultDataPath: /var/mnt/longhorn
-      # backupTarget: s3://longhorn@weur/
-      # backupTargetCredentialSecret: longhorn-backup-secret
-      # defaultDataLocality: best-effort
-      defaultReplicaCount: "3"
-      defaultLonghornStaticStorageClass: longhorn
-      # createDefaultDiskLabeledNodes: false
-      nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
-      concurrentAutomaticEngineUpgradePerNodeLimit: "1"
-      storageMinimalAvailablePercentage: "10"
-      StorageOverProvisioningPercentage: "120"
-      storageReservedPercentageForDefaultDisk: "20"
+    # defaultSettings:
+    #   defaultDataPath: /var/mnt/longhorn
+    #   # backupTarget: s3://longhorn@weur/
+    #   # backupTargetCredentialSecret: longhorn-backup-secret
+    #   # defaultDataLocality: best-effort
+    #   defaultReplicaCount: "3"
+    #   defaultLonghornStaticStorageClass: longhorn
+    #   # createDefaultDiskLabeledNodes: false
+    #   nodeDownPodDeletionPolicy: delete-both-statefulset-and-deployment-pod
+    #   concurrentAutomaticEngineUpgradePerNodeLimit: "1"
+    #   storageMinimalAvailablePercentage: "10"
+    #   StorageOverProvisioningPercentage: "120"
+    #   storageReservedPercentageForDefaultDisk: "20"
 
-      v1DataEngine: true
-      v2DataEngine: false
-    ingress:
-      enabled: true
-      ingressClassName: internal
-      host: "longhorn.${SECRET_DOMAIN}"
-      tls: true
-      tlsSecret: "longhorn-tls"
-      path: /
-      annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-production"
-        nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
-        glance/internal: "true"
-        glance/name: Longhorn
-        glance/icon: di:longhorn
-        glance/description: Cluster Storage
-    metrics:
-      serviceMonitor:
-        enabled: true
+    #   v1DataEngine: true
+    #   v2DataEngine: false
+    # ingress:
+    #   enabled: true
+    #   ingressClassName: internal
+    #   host: "longhorn.${SECRET_DOMAIN}"
+    #   tls: true
+    #   tlsSecret: "longhorn-tls"
+    #   path: /
+    #   annotations:
+    #     cert-manager.io/cluster-issuer: "letsencrypt-production"
+    #     nginx.ingress.kubernetes.io/whitelist-source-range: "10.0.0.0/8,172.16.0.0/12,192.168.0.0/16"
+    #     glance/internal: "true"
+    #     glance/name: Longhorn
+    #     glance/icon: di:longhorn
+    #     glance/description: Cluster Storage
+    # metrics:
+    #   serviceMonitor:
+    #     enabled: true
