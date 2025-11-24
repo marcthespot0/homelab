@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: ./kubernetes/apps/system/longhorn/app
+  path: ./kubernetes/apps/kube-system/longhorn/app
   prune: true
   retryInterval: 2m
   sourceRef:
