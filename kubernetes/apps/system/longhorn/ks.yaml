@@ -5,8 +5,15 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m
-  path: clusters/main/kubernetes/system/longhorn/app
+  path: .kubernetes/system/longhorn/app
+  postBuild:
+    substituteFrom:
+      - name: cluster-secrets
+        kind: Secret
   prune: true
   sourceRef:
     kind: GitRepository
-    name: cluster
+    name: flux-system
+    namespace: flux-system
+  targetNamespace: system
+  wait: false
