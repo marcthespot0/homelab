@@ -12,4 +12,4 @@ resources:
   - ./coredns/ks.yaml
   - ./metrics-server/ks.yaml
   - ./reloader/ks.yaml
-  - ./csi-driver-nfs.yaml
+  - ./csi-driver-nfs/ks.yaml
