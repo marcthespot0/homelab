@@ -8,3 +8,4 @@ namespace: external-secrets
 resources:
   - ./external-secrets/ks.yaml
   - ./onepassword-connect/ks.yaml
+  - ./namespace.yaml
