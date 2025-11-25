@@ -23,3 +23,23 @@ spec:
     preUpgradeChecker:
       jobEnabled: false
       upgradeVersionCheck: false  # https://github.com/longhorn/longhorn/blob/v1.9.1/chart/values.yaml
+    service:
+      app:
+        ports:
+          http:
+            port: 80
+    serviceMonitor:
+      app:
+        endpoints:
+          - port: http
+    route:
+      app:
+        hostnames: ["longhorn.${SECRET_DOMAIN}"]
+        parentRefs:
+          - name: envoy-internal
+            namespace: network
+            sectionName: https
+        rules:
+          - backendRefs:
+              - identifier: longhorn-frontend
+                port: 443
