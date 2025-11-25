@@ -19,7 +19,7 @@ cniConfig:
 
 nodes:
   - hostname: "talos-001"
-    ipAddress: "192.168.1.74"
+    ipAddress: "192.168.1.73"
     installDisk: "/dev/sda"
     machineSpec:
       secureboot: false
@@ -30,7 +30,7 @@ nodes:
           hardwareAddr: "bc:24:11:b6:db:cc"
         dhcp: false
         addresses:
-          - "192.168.1.74/24"
+          - "192.168.1.73/24"
         routes:
           - network: "0.0.0.0/0"
             gateway: "192.168.1.1"
