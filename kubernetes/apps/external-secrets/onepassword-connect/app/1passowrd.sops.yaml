@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: Secret
-metadata:
-  name: onepassword-connect-secret
-data:
-  1password-credentials.json: {"verifier":{"salt":"j8tyDt6riEq4CP_YxOj5kQ","localHash":"4n8uThCL5UvLVgLvpCqIys0H5B8YD3UjYBS4NI4Z6aw"},"encCredentials":{"kid":"localauthv2keykid","enc":"A256GCM","cty":"b5+jwk+json","iv":"6jTU4VwILGIPfj3g","data":"wFCrcEjVWNRhDM1hL1PVDBwgtkVLf3IOd6Ktl5nZ32Y8CUyf0diqgnqeNpduJZxXlvBZ5jze7Ytlr_hufXzgUYjnzXJUKjRNhcDoxvXTLmBQeVjQS-HbqpGajg73ld2OHKXd5oqFVPiVo_8qdb2Omb1nnopQBBjfTYZUKmFlhT5BluPkM8_jlbIA1kLyT64jY7U6T9MDCeIPxUJJOLfOhQOYh3g_Rvzr0C70mLpSvphVwTYRRX7E_NcOnWcB_oW4G9XtP5QN5Yiy08YGPWTDSByZ1a6eDVRWMTFKmY79gmXpr3V5WV_ALOkBpv9AQdlNUpRm781qnLOmrgHOX-eIzTQ5P7G6TJO78FSnABWBfOWKinHlQI6J1AAv5Xn-DZC3XvXKyAK5YEcswrxT97CszP3yfF0yq2qOf9EHmouGPfEUTaPPZjIYPz5d_MgsZPxky72gQrQnX87-F1OfPkokC8RsD8IUUTfrTsmqKxH215UrzDZ3fE533Qe8Vt91dGabuun6TO92wfSMqRePLwCAZVApcnaCTux5CiG2W1flnb1nJNhs0N3Q_3AHCBmjOLVNCQ6D0mfHwN4SnCul-xSPnMg-SRwsnEuXRfMXCevNe0xF-BkImxGlT9HB-1BIy-RjpA"},"version":"2","deviceUuid":"fw5fcpsi24sppspqd7tgh2rt2y","uniqueKey":{"alg":"A256GCM","ext":true,"k":"bCzb0YdXrccvnpDkr0yJU3a75Lc9QuiDaZAGbdYMQAg","key_ops":["decrypt","encrypt"],"kty":"oct","kid":"piv4dcwxgye6xkaiekush4zliq"}}
