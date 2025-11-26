@@ -6,4 +6,4 @@ resources:
   - ./helmrelease.yaml
   - ./networkpolicy.yaml
   - ./ocirepository.yaml
-  - ./1passowrd.sops.yaml
+  - ./1password.sops.yaml
