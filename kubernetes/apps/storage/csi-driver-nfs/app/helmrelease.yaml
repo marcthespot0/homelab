@@ -36,7 +36,7 @@ spec:
       name: truenas-nfs
       parameters:
         server: 192.168.1.235
-        share: /mnt/truenas/kubernetes/nfs
+        share: /mnt/truenas/kubernetes/nfs/vols
       mountOptions:
         - nfsvers=4.2
         - nconnect=16
