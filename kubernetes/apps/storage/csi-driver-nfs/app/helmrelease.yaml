@@ -33,10 +33,10 @@ spec:
   values:
     storageClass:
       create: true
-      name: nfs-slow
+      name: truenas-nfs
       parameters:
-        server: truenas
-        share: truenas/kubernetes/
+        server: 192.168.1.235
+        share: truenas/kubernetes/nfs
       mountOptions:
         - nfsvers=4.2
         - nconnect=16
