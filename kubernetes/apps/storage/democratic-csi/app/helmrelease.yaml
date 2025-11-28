@@ -44,7 +44,7 @@ spec:
         allowVolumeExpansion: true
     driver:
       config:
-        driver: truenas-api-nfs
+        driver: freenas-api-nfs
         logLevel: debug
         instance_id:
         httpConnection:
