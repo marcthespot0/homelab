@@ -10,38 +10,25 @@ spec:
     name: democratic-csi
   interval: 1h
   values:
-    controller:
-      fullnameOverride: *name
-      enabled: true
-      strategy: node
-      externalAttacher:
-        enabled: false
-      externalProvisioner:
-        enabled: true
-        image:
-          registry: registry.k8s.io/sig-storage/csi-provisioner
-          tag: v5.3.0
-        extraArgs:
-          - --leader-election=false
-          - --node-deployment=true
-          - --node-deployment-immediate-binding=false
-          - --feature-gates=Topology=true
-          - --strict-topology=true
-          - --enable-capacity=true
-          - --capacity-ownerref-level=1
-      externalResizer:
-        enabled: false
     csiDriver:
-      name: local
-      attachRequired: false
-      storageCapacity: true
-      fsGroupPolicy: File
+      name: "org.democratic-csi.nfs"
     storageClasses:
-      - name: truenas-nfs-storage
-        defaultClass: false
-        reclaimPolicy: Delete
-        volumeBindingMode: WaitForFirstConsumer
-        allowVolumeExpansion: true
+    - name: freenas-nfs-csi
+      defaultClass: false
+      reclaimPolicy: Delete
+      volumeBindingMode: Immediate
+      allowVolumeExpansion: true
+      parameters:
+        fsType: nfs
+    mountOptions:
+    - noatime
+    - nfsvers=4
+    secrets:
+      provisioner-secret:
+      controller-publish-secret:
+      node-stage-secret:
+      node-publish-secret:
+      controller-expand-secret:
     driver:
       config:
         driver: freenas-api-nfs
@@ -54,17 +41,79 @@ spec:
           apiKey: "1-tZKE6cqUtMI8o91kTGzmfTjNYDR4t4xht3dVZdVK8JOpflVEzcq4ZNYpuJCSa26S"
           allowInsecure: true
           apiVersion: 2
-    node:
-      driver:
-        image:
-          registry: democraticcsi/democratic-csi
-          tag: v1.9.3
-        extraVolumeMounts:
-          - name: local-hostpath
-            mountPath: /var/lib/csi-local-hostpath
-            mountPropagation: Bidirectional
-      extraVolumes:
-        - name: local-hostpath
-          hostPath:
-            path: /var/lib/csi-local-hostpath
-            type: DirectoryOrCreate
+        zfs:
+          # Make sure to use the storage pool that was created previously
+          datasetParentName: truenas/kubernetes/nfs/vols
+          detachedSnapshotsDatasetParentName: truenas/kubernetes/nfs/snaps
+          datasetEnableQuotas: true
+          datasetEnableReservation: false
+          datasetPermissionsMode: "0777"
+          datasetPermissionsUser: 0
+          datasetPermissionsGroup: 0
+        nfs:
+          shareHost: 192.168.1.235
+          shareAlldirs: false
+          shareAllowedHosts: []
+          shareAllowedNetworks: []
+          shareMaprootUser: root
+          shareMaprootGroup: root
+          shareMapallUser: ""
+          shareMapallGroup: ""
+    # controller:
+    #   fullnameOverride: *name
+    #   enabled: true
+    #   strategy: node
+    #   externalAttacher:
+    #     enabled: false
+    #   externalProvisioner:
+    #     enabled: true
+    #     image:
+    #       registry: registry.k8s.io/sig-storage/csi-provisioner
+    #       tag: v5.3.0
+    #     extraArgs:
+    #       - --leader-election=false
+    #       - --node-deployment=true
+    #       - --node-deployment-immediate-binding=false
+    #       - --feature-gates=Topology=true
+    #       - --strict-topology=true
+    #       - --enable-capacity=true
+    #       - --capacity-ownerref-level=1
+    #   externalResizer:
+    #     enabled: false
+    # csiDriver:
+    #   name: local
+    #   attachRequired: false
+    #   storageCapacity: true
+    #   fsGroupPolicy: File
+    # storageClasses:
+    #   - name: truenas-nfs-storage
+    #     defaultClass: false
+    #     reclaimPolicy: Delete
+    #     volumeBindingMode: WaitForFirstConsumer
+    #     allowVolumeExpansion: true
+    # driver:
+    #   config:
+    #     driver: freenas-api-nfs
+    #     logLevel: debug
+    #     instance_id:
+    #     httpConnection:
+    #       protocol: https
+    #       host: 192.168.1.235
+    #       port: 443
+    #       apiKey: "1-tZKE6cqUtMI8o91kTGzmfTjNYDR4t4xht3dVZdVK8JOpflVEzcq4ZNYpuJCSa26S"
+    #       allowInsecure: true
+    #       apiVersion: 2
+    # node:
+    #   driver:
+    #     image:
+    #       registry: democraticcsi/democratic-csi
+    #       tag: v1.9.3
+    #     extraVolumeMounts:
+    #       - name: local-hostpath
+    #         mountPath: /var/lib/csi-local-hostpath
+    #         mountPropagation: Bidirectional
+    #   extraVolumes:
+    #     - name: local-hostpath
+    #       hostPath:
+    #         path: /var/lib/csi-local-hostpath
+    #         type: DirectoryOrCreate
