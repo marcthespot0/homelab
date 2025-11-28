@@ -42,12 +42,6 @@ spec:
         reclaimPolicy: Delete
         volumeBindingMode: WaitForFirstConsumer
         allowVolumeExpansion: true
-    volumeSnapshotClasses:
-      - name: truenas-nfs-storage-snapshots
-        annotations:
-          snapshot.storage.kubernetes.io/is-default-class: "true"
-        deletionPolicy: Delete
-        parameters: {}
     driver:
       config:
         driver: truenas-api-nfs
