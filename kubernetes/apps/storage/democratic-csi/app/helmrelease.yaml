@@ -31,23 +31,6 @@ spec:
           - --capacity-ownerref-level=1
       externalResizer:
         enabled: false
-      externalSnapshotter:
-        enabled: true
-        image:
-          registry: registry.k8s.io/sig-storage/csi-snapshotter
-          tag: v8.3.0
-        extraArgs:
-          - --leader-election=false
-          - --node-deployment=true
-      affinity: &affinity
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                    - key: kubernetes.io/arch
-                      operator: In
-                      values:
-                        - amd64
     csiDriver:
       name: local
       attachRequired: false
